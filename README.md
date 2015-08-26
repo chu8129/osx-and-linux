@@ -1,5 +1,6 @@
 # osx-and-linux
 更改路由表
+
 route delete 0.0.0.0
 
 route add -net 0.0.0.0 192.168.100.10
