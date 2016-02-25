@@ -1,0 +1,23 @@
+mkfs.ext4 /dev/sda
+mount /dev/sda /mnt
+nano /etc/pacman.d/mirrolist
+#Server = http://mirrors.163.com/archlinux/$repo/os/i686
+pacstrap -i /mnt base base-devel
+genfstab -U /mnt >> /mnt/etc/fsta
+arch-chroot /mnt /bin/bash
+nano /etc/locale.gen
+locale-gen    
+echo LANG=zh_CN.UTF-8  > /etc/locale.conf
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+hwclock --systohc --utc #or localtime
+echo ar > /etc/hostname
+systemctl start dhcpcd
+systemctl enable dhcpcd
+pacman -S syslinux
+syslinux-install_update -i -a -m
+nano /boot/syslinux/syslinux.cfg
+useradd -m -g users -s /bin/bash ar
+passwd ar
+exit    # exit install ev
+umount -R /mnt
+reboot
