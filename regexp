@@ -30,13 +30,13 @@
 　　(?<=(?<o1>/[)|(?<o2>/【))/d+(?=(?(o1)/]|/】))
 　　
 　　string test = "xxxxaxxaxxaxxbxxbxxbxxxx";  
-Match m = Regex.Match(test, "a((?<o>a)|(?<-o>b)|[^ab]+)+b");  
-if (m.Groups["o"].Captures.Count > 0)  
-{  
-    Console.WriteLine("错误，不是完整的a...b对应关系，有单独的a存在");  
-}  
-else  
-{  
-    Console.WriteLine("很好，a...b对应。"); 
+    Match m = Regex.Match(test, "a((?<o>a)|(?<-o>b)|[^ab]+)+b");  
+    if (m.Groups["o"].Captures.Count > 0)  
+    {  
+        Console.WriteLine("错误，不是完整的a...b对应关系，有单独的a存在");  
+    }  
+    else  
+    {  
+        Console.WriteLine("很好，a...b对应。"); 
 　　
 　　
