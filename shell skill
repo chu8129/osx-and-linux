@@ -1,1 +1,12 @@
 ps -ef|grep python|grep vin |cut -c 9-15 |xargs kill -9
+
+
+
+grep -nr "template" *
+递归查询文件内容是否包括template
+
+find . -type f -exec sed -i -e "s/template/zongheng/g" {} \;
+替换文件内容，i是就地替换
+
+for i in `find ./` ;do NN=$(echo $i | sed 's/template/zongheng/') ;mv "$i" "$NN";done
+替换文件名中的字段
