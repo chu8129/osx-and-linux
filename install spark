@@ -1,0 +1,12 @@
+  696  tar xzvf spark-1.6.1-bin-hadoop2.4.tgz spark-1.6.1-bin-hadoop2.4/
+  740  mv spark-1.6.1-bin-hadoop2.4 /srv/spark-1.6.1
+  741  sudo mv spark-1.6.1-bin-hadoop2.4 /srv/spark-1.6.1
+  742  ln -s /srv/spark-1.6.1 /srv/spark
+  743  sudo ln -s /srv/spark-1.6.1 /srv/spark
+  744  vi ~/.bashrc 
+  
+  export SPARK_HOME=/srv/spark
+  export PATH=$SPARK_HOME/bin:$PATH
+  
+  745  source  ~/.bashrc 
+  746  pyspark
