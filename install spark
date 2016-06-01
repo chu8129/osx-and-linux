@@ -14,3 +14,14 @@ pre-build
 
 
   test：./run-example SparkPi
+  
+  
+  
+  
+  Error:
+  
+JAVA_HOME is not set
+ADD 
+  export SPARK_HOME=/srv/spark
+  export PATH=$SPARK_HOME/bin:$PATH
+TO cat ~/.bash_profile
