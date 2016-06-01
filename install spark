@@ -1,3 +1,4 @@
+pre-build
   696  tar xzvf spark-1.6.1-bin-hadoop2.4.tgz spark-1.6.1-bin-hadoop2.4/
   740  mv spark-1.6.1-bin-hadoop2.4 /srv/spark-1.6.1
   741  sudo mv spark-1.6.1-bin-hadoop2.4 /srv/spark-1.6.1
@@ -10,3 +11,6 @@
   
   745  source  ~/.bashrc 
   746  pyspark
+
+
+  test：./run-example SparkPi
