@@ -1,0 +1,12 @@
+  669  mkdir /usr/lib/jvm
+  670  sudo mkdir /usr/lib/jvm
+  671  sudo tar zxvf jdk-8u92-linux-x64.tar.gz  -C ../../../usr/lib/jvm
+  672  cd /usr/lib/jvm/
+  673  ls
+  674  cd jdk1.8.0_92/
+  675  ls
+  676  cd ..
+  677  vi ~/.bashrc 
+  678  source ~/.bashrc 
+  679  java
+  680  history
