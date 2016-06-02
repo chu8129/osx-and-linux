@@ -1,0 +1,5 @@
+Install Screenfetch:
+
+Get: wget -O screenfetch 'https://raw.github.com/KittyKatt/screenFetch/master/screenfetch-dev'
+Make executable: chmod +x screenfetch
+Move: sudo mv screenfetch /usr/bin/
