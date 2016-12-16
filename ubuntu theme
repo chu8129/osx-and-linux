@@ -1,0 +1,5 @@
+wget http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key
+sudo apt-key add -<Release.key
+sudo apt install arc-theme
+sudo apt install unity-tweak-tool
+unity-tweak-tool
