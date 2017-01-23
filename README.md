@@ -11,3 +11,5 @@ SCP
 
 eval $(find .  -name "*bz2" -print|awk '{print "scp "$0" root@188.*.**.27:/Users/**/Desktop/"}')
 
+
+ssh -CNfR 远程端口:本地ip/代理的ip:本地端口/代理端口 远程账号@远程ip
