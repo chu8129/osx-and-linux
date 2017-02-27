@@ -1,0 +1,1 @@
+cat user_pay_cut_group_shopAndDate |awk 'NR<2{print $0;next}{print $0|"sort -r"}' > user_pay_cut_group_shopAndDate_sort
