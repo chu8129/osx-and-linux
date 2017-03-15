@@ -1,0 +1,21 @@
+In [1]: flat([1,2,[3,4,[5]],[6,7]])
+Out[1]: [1, 2, 3, 4, 5, 6, 7]
+
+from collections import Iterable
+flat = lambda t: [_ for y in t for _ in flat(y)] if isinstance(t, Iterable) else [x]
+
+
+func = lambda x: [y for l in x for y in func(l)] if type(x) is list else [x]
+result = func(target_list)
+
+
+>>> from compiler.ast import flatten
+>>> flatten(a)
+
+
+
+import itertools
+a = [[1,2,3],[4,5,6], [7], [8,9]]
+out = list(itertools.chain.from_iterable(a))
+
+sum(a,[])
