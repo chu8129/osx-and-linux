@@ -16,3 +16,8 @@ https://teddysun.com/342.html
     "fast_open":true,
     "workers": 1
 }
+    1  apt-get update
+    2  apt-get install python-pip
+    3  pip install shadowsocks
+    4  vim ss.json
+    5  ssserver -c ss.json -d start
