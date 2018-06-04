@@ -145,7 +145,7 @@ pre_install(){
         exit 1
     fi
     # Set shadowsocks config password
-    shadowsockspwd="20vps|x."
+    shadowsockspwd=""
     dport=8129
     shadowsocksport=${dport}
     shadowsockscipher="aes-256-cfb"
