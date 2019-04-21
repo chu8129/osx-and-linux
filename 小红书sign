@@ -1,0 +1,86 @@
+    public HarvestResponse sendConnect(ConnectInformation connectInformation) {
+        try {
+            HarvestResponse harvestResponse = new HarvestResponse();
+            if (connectInformation != null) {
+                JsonObject asSocketJsonObject = connectInformation.asSocketJsonObject();
+                c cVar = this.log;
+                StringBuilder stringBuilder = new StringBuilder("init mobile agent  :");
+                stringBuilder.append(asSocketJsonObject.toString());
+                cVar.a(stringBuilder.toString());
+                byte[] sendData = sendData(asSocketJsonObject.toString().getBytes(C0078C.UTF8_NAME), 2, C1092b.m3132n(), "sign=");
+                if (sendData != null) {
+                    int c = C1141e.m3367c(sendData);
+                    this.log.a("init mobile agent response code :".concat(String.valueOf(c)));
+                    harvestResponse.setStatusCode(c);
+                    if (c == 0) {
+                        harvestResponse.setStatus("success");
+                        JSONObject d = C1141e.m3372d(sendData);
+                        if (d != null) {
+                            HarvestConfiguration harvestConfiguration = new HarvestConfiguration();
+                            harvestConfiguration.reconfigurePb(d);
+                            harvestResponse.setConfiguration(harvestConfiguration);
+                        }
+                    } else {
+                        harvestResponse.setErrorCode(c);
+                        harvestResponse.setStatus("error");
+                    }
+                }
+                return harvestResponse;
+            }
+            throw new IllegalArgumentException();
+        } catch (Exception e) {
+            f.j("HarvestSoc sendConnect has  an error  : ".concat(String.valueOf(e)));
+            return null;
+        }
+    }
+    public JsonObject asSocketJsonObject() {
+        JsonObject jsonObject = new JsonObject();
+        this.deviceId = NBSAgent.getImpl().p();
+        jsonObject.add("did", new JsonPrimitive(this.deviceId != null ? this.deviceId : ""));
+        a(this.deviceInformation);
+        jsonObject.add("dev", this.deviceInformation.asSocketJsonArray());
+        a(this.applicationInformation);
+        jsonObject.add("app", this.applicationInformation.asSocketJsonArray());
+        return jsonObject;
+    }
+
+DeviceInformation
+        JsonArray jsonArray = new JsonArray();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(this.screenSize);
+        mo14954e(stringBuilder.toString());
+        StringBuilder stringBuilder2 = new StringBuilder();
+        stringBuilder2.append(this.screenSize);
+        jsonArray.add(new JsonPrimitive(stringBuilder2.toString()));
+        mo14954e(this.manufacturer);
+        jsonArray.add(new JsonPrimitive(this.manufacturer));
+        mo14954e(this.model);
+        jsonArray.add(new JsonPrimitive(this.model));
+        mo14954e(this.osName);
+        jsonArray.add(new JsonPrimitive(this.osName));
+        mo14954e(this.osVersion);
+        jsonArray.add(new JsonPrimitive(this.osVersion));
+        if (this.misc == null || this.misc.isEmpty()) {
+            this.misc = Collections.emptyMap();
+        }
+        jsonArray.add(new Gson().toJsonTree(this.misc, this.f13792e));
+        DeviceData.userId = C2115j.m8210h().mo11007g();
+        return jsonArray;
+    
+
+    ApplicationInformation
+    public JsonArray asSocketJsonArray() {
+        JsonArray jsonArray = new JsonArray();
+        mo14954e(this.packageId);
+        jsonArray.add(new JsonPrimitive(this.packageId));
+        mo14954e(this.appName);
+        jsonArray.add(new JsonPrimitive(this.appName));
+        mo14954e(this.appVersion);
+        jsonArray.add(new JsonPrimitive(this.appVersion));
+        jsonArray.add(new JsonPrimitive("agent-android"));
+        jsonArray.add(new JsonPrimitive(NBSAgent.getVersion()));
+        jsonArray.add(new JsonPrimitive(this.sdkBuildId));
+        mo14955f(this.channelId);
+        jsonArray.add(new JsonPrimitive(this.channelId));
+        return jsonArray;
+    }
