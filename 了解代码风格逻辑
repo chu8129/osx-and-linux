@@ -1,6 +1,0 @@
-1、异常处理规范，如mysql的链接问题、lost connection等处理
-2、return规范，如return code,data,message
-3、命名规范
-4、项目架构规范：test、src、bin、start
-5、定时规范：airflow、等
-6、supervisor无状态化
