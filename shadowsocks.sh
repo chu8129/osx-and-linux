@@ -21,4 +21,7 @@ https://teddysun.com/342.html
     3  pip install shadowsocks
     4  vim ss.json
     5  ssserver -c ss.json -d start
+apt-get update
+apt-get install python-pip
+pip install shadowsocks
 nohup ssserver -s 0.0.0.0 -p 8129 -k qiuwen -m aes-256-cfb 1>/dev/null 2>&1 &
