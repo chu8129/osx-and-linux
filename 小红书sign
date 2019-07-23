@@ -1,3 +1,47 @@
+    public static synchronized String n() {
+        PackageInfo packageInfo;
+        String str;
+        CertificateFactory certificateFactory;
+        X509Certificate x509Certificate;
+        synchronized (b.class) {
+            Context v = j.h().v();
+            try {
+                synchronized (b.class) {
+                    packageInfo = v.getPackageManager().getPackageInfo(v.getPackageName(), 64);
+                }
+                if (packageInfo == null) {
+                    return "";
+                }
+                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(packageInfo.signatures[0].toByteArray());
+                str = null;
+                try {
+                    certificateFactory = CertificateFactory.getInstance("X509");
+                } catch (CertificateException e2) {
+                    e2.printStackTrace();
+                    certificateFactory = null;
+                }
+                try {
+                    x509Certificate = (X509Certificate) certificateFactory.generateCertificate(byteArrayInputStream);
+                } catch (CertificateException e3) {
+                    e3.printStackTrace();
+                    x509Certificate = null;
+                }
+                try {
+                    str = a(MessageDigest.getInstance("SHA1").digest(x509Certificate.getEncoded()));
+                } catch (NoSuchAlgorithmException e4) {
+                    e4.printStackTrace();
+                } catch (CertificateEncodingException e5) {
+                    e5.printStackTrace();
+                }
+            } catch (NameNotFoundException e6) {
+                e6.printStackTrace();
+                return "";
+            }
+        }
+        return str;
+    }
+
+
 # 反编
     public HarvestResponse sendConnect(ConnectInformation connectInformation) {
         try {
