@@ -38,18 +38,18 @@
 ### 迭代周期内
 
 ```
-    week1
-          减少上一次迭代遗留的债务，解决上一周期遗留的关键性债务，计划下一周期
-    week2
-          按week1的计划
-     week3
-          按week1的计划
-     final week
-           按测试计划测试新功能等，并补充文档
-           pre-release版本，邀请用户帮忙测试
-     week1
-           检查监控上一周期的pre-release，并解决遗留的关键性issue
-           发布pre-release
+      week1
+            减少上一次迭代遗留的债务，解决上一周期遗留的关键性债务，计划下一周期
+      week2
+            按week1的计划
+      week3
+            按week1的计划
+      final week
+            按测试计划测试新功能等，并补充文档
+            pre-release版本，邀请用户帮忙测试
+      week1
+            检查监控上一周期的pre-release，并解决遗留的关键性issue
+            发布pre-release
 ```
 
 ### Triage(任务分配>里程碑)
