@@ -52,7 +52,7 @@
            发布pre-release
 ```
 
-### Triage, 分工分配
+### Triage(任务分配>里程碑)
 ```
      bug和feature都会被分配到milestone里程碑，带有优先级
           严重的bug会被安排在其他bug前面
