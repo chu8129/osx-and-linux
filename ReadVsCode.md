@@ -117,9 +117,11 @@
 
 ## 关于code review
 ```
-https://github.com/microsoft/vscode/pulls
+https://github.com/microsoft/vscode/pulse
 ```
-
+    https://github.com/microsoft/vscode/pull/82171#pullrequestreview-299623638
+    实际上跟日常一样
+    
 ### 面壁
 
 
