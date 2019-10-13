@@ -100,11 +100,24 @@
       周五：暂停封存任务安排表，打包master，测试、修复，更新相关issue、评论等
 ```
 
+## 代码组织
+```
+   The core is partitioned into the following layers:
+   base: Provides general utilities and user interface building blocks
+   platform: Defines service injection support and the base services for Code
+   editor: The "Monaco" editor is available as a separate downloadable component
+   languages: For historical reasons, not all languages are implemented as extensions (yet)
+         - as Code evolves we will migrate more languages to towards extensions
+   workbench: Hosts the "Monaco" editor and provides the framework for "viewlets" like the Explorer, 
+         Status Bar, or Menu Bar, leveraging Electron to implement the Code desktop application.
+```
 
-
-关于review
+## 关于code review
+```
 https://github.com/microsoft/vscode/pulls
+```
 
+### 
 
 
 
