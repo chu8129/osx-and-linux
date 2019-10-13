@@ -23,7 +23,7 @@
                类似java层层包裹封装（不易于新同学理解）
 ```    
 
-## 开发流程
+## 关于开发周期
 
 ### roadmap
 ```
@@ -117,7 +117,7 @@
 https://github.com/microsoft/vscode/pulls
 ```
 
-### 
+### 面壁
 
 
 
