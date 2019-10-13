@@ -121,9 +121,10 @@ https://github.com/microsoft/vscode/pulse
 ```
     https://github.com/microsoft/vscode/pull/82171#pullrequestreview-299623638
     实际上跟日常一样
-    
+  
 ### 面壁
-   ** 理想 ** 是美好的，现实是骨感的
+```
+** 理想 ** 是美好的，现实是骨感的
    1、ccs是否有可能按周期来更？现实是
       客户爸爸优先，计划被各种打乱；
       计划基本都会按自然月，上线是没问题的，但是数据问题，如数据不全缺失等问题如何保证；
@@ -145,6 +146,6 @@ https://github.com/microsoft/vscode/pulse
       缺少了周期结束时的整理工作，未完成的工作顺利转移到下一个周期
          不需要全部人参与，全部人消耗过多时间，把控项目进展的人完成就好，例如项目经理or产品
       
-
+```
 
     
