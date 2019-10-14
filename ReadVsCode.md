@@ -132,10 +132,80 @@ https://github.com/microsoft/vscode/pulse
     实际上跟日常一样
     issue -- fix request review -- discuss -- merge
 
-# gitlab
+# gitlab：https://about.gitlab.com/direction/#dev
+![avatar](https://about.gitlab.com/direction/devops-loop-and-spans.png)
+## 愿景
+```
+    希望以预配置通过devops流程，替换单个应用通过一系列不同的devops工具
+```
+## DevOps周期
+```
+    DevOps周期划分为dev和ops两个大阶段，细分之后可分为：plan、create、verify、package、release、configure、monitor
+```
+### dev
+```
+    DevOps的dev周期包括manager、plan、create
+```
+#### manager
+```
+    该步骤是DevOps最开始的阶段，主要是完成软件的创建和开发上；开发阶段相对来说范围比较广，包括价值调研、项目管理、敏捷工具、IDEs、设计管理等；
+```
+##### 开发分析
+```
+    SWOT分析以及挑战
+        优点
+        劣势
+        机会
+        威胁
+        可视化的主题
+        高效自动的code review
+        价值衡量并提高效率
+        项目管理转换成产品管理
+        
+    三年战略：三年内需要完成***
+    一年计划：接下来的12个月将会曾为战略中不可以或缺的部分
+```
+#### Manage
+```
+    对于管理者而言，管理阶段是持续性的，需要管理人员、资金、风险等；
+    当风险较高时，管理者把控项目应有经验，不应设置过于复杂的流程，并且管理者不应在安全性和规范性上妥协；
+    管理者在gitlab中的角色是提供跨阶段性的帮助，协助分析更为便捷的配置；
+```
+#### plan
+```
+    看板
+    从jira导入避免丢失数据
+    加强项目组合以及项目路线图
+    更方便的完整计划
+    报告和分析
+    需求管理
+```
+#### create
+```
+    增强code review体验
+    在git操作大型文件
+    投入精力到wiki
+    更加便捷的提供共享到gitlab
+    援助经验共享者
+```
+### CI/CD自动集成
+```
+    cicd概览
 
-## 开发周期规范
-
+        代码构建/验证（验证）
+        包装/分配（包装）
+        软件交付（发布）
+```
+### Ops
+```
+    Ops阶段包括DevOps周期的configure和monitor监控阶段，通常描述该阶段为IT自动化、配置管理、运营管理
+```
+#### 
+```
+```
+```
+```
+### 
 
 # 面壁思过
 ```
