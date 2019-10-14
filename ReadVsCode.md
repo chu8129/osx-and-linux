@@ -12,9 +12,9 @@
       Code wins argument
 ```
 
-# vscode
+# 先vscode后gitlab
 
-## 先看看vscode 
+## vscode 
 ```
    原因：想了解微软的规范性以及文本编辑器的框架（如果有足够的时间 
 ```
