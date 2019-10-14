@@ -200,12 +200,23 @@ https://github.com/microsoft/vscode/pulse
 ```
     Ops阶段包括DevOps周期的configure和monitor监控阶段，通常描述该阶段为IT自动化、配置管理、运营管理
 ```
-#### 
+#### configure
 ```
+    自动化配置应用、架构
 ```
+#### monitor
 ```
+    应用性能监控
+    测试应用健康
 ```
-### 
+### Secure
+```
+    集成安全功能完成开发周期
+```
+### defend
+```
+    收到安全入侵时保护应用、架构
+```
 
 # 面壁思过
 ```
