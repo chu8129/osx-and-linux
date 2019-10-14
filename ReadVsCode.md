@@ -11,7 +11,9 @@
          了解各种业务的较优方案以及优缺点；如大日志监控，数据库的优化等
       Code wins argument
 ```
-
+---
+---
+---
 # 先vscode后gitlab
 
 ## vscode 
@@ -131,9 +133,15 @@ https://github.com/microsoft/vscode/pulse
     https://github.com/microsoft/vscode/pull/82301
     实际上跟日常一样
     issue -- fix request review -- discuss -- merge
+---
+---
+---
 
 # gitlab：https://about.gitlab.com/direction/#dev
 ![avatar](https://about.gitlab.com/direction/devops-loop-and-spans.png)
+
+
+
 ## 愿景
 ```
     希望以预配置通过devops流程，替换单个应用通过一系列不同的devops工具
@@ -142,7 +150,7 @@ https://github.com/microsoft/vscode/pulse
 ```
     DevOps周期划分为dev和ops两个大阶段，细分之后可分为：plan、create、verify、package、release、configure、monitor
 ```
-### dev
+### Dev
 ```
     DevOps的dev周期包括manager、plan、create
 ```
@@ -188,6 +196,7 @@ https://github.com/microsoft/vscode/pulse
     更加便捷的提供共享到gitlab
     援助经验共享者
 ```
+
 ### CI/CD自动集成
 ```
     cicd概览
@@ -196,6 +205,7 @@ https://github.com/microsoft/vscode/pulse
         包装/分配（包装）
         软件交付（发布）
 ```
+
 ### Ops
 ```
     Ops阶段包括DevOps周期的configure和monitor监控阶段，通常描述该阶段为IT自动化、配置管理、运营管理
@@ -209,14 +219,20 @@ https://github.com/microsoft/vscode/pulse
     应用性能监控
     测试应用健康
 ```
+
 ### Secure
 ```
     集成安全功能完成开发周期
 ```
+
 ### defend
 ```
     收到安全入侵时保护应用、架构
 ```
+
+
+---
+
 
 # 面壁思过
     ** 总体感觉，vs的wiki页面更偏向于短周期的迭代时间安排，gitlab的介绍更偏向于长时间的计划，罗列当前产品的优劣以及挑战点，完善项目**
