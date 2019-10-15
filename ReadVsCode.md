@@ -1,4 +1,13 @@
+[TOC]
+
+
+
+
+
+
+
 # 作业1：任正非新年致全体员工信
+
 ```
     全文各段首句都有总结，对于我个人而言，精简之后的内容，
          重点是：可靠性和可用性；
@@ -26,15 +35,15 @@
             版本定义以及版本迭代的划分？bugfix推送规范？
             日志的处理，是否有接近完美的示例，有没有各种需求下的处理推荐方法？
             性能与可读性的权衡？如orm和原生sql
-``` 
+```
 ``` 
      了解code review的具体内容
             日常review着重检查逻辑以及性能
-```  
+```
 
 ---
 
-## vscode 
+# vscode 
 ```
    原因：想了解微软的规范性以及文本编辑器的框架（如果有足够的时间 
 ```
@@ -93,7 +102,7 @@
      如果，生成失败，从build slack channel确认通知谁处理
      如果，编译失败，push一个修复的commit病通知开发者
      如果，测试失败，提交issue给开发者修复
-````
+```
 
 ### 关于endgame分支管理
 
@@ -121,10 +130,12 @@
    base: Provides general utilities and user interface building blocks
    platform: Defines service injection support and the base services for Code
    editor: The "Monaco" editor is available as a separate downloadable component
-   languages: For historical reasons, not all languages are implemented as extensions (yet)
-         - as Code evolves we will migrate more languages to towards extensions
-   workbench: Hosts the "Monaco" editor and provides the framework for "viewlets" like the Explorer, 
-         Status Bar, or Menu Bar, leveraging Electron to implement the Code desktop application.
+   languages: For historical reasons, not all languages are implemented as 
+   				extensions (yet) - as Code evolves we will migrate more languages 
+   				to towards extensions
+   workbench: Hosts the "Monaco" editor and provides the framework for "viewlets" 
+   				like the Explorer, Status Bar, or Menu Bar, leveraging Electron to
+                implement the Code desktop application.
 ```
 
 ## 关于code review
@@ -139,14 +150,19 @@ https://github.com/microsoft/vscode/pulse
 ---
 ---
 
-# gitlab：https://about.gitlab.com/direction/#dev
+# gitlab：
+
+**https://about.gitlab.com/direction/#dev **
+
 ![avatar](https://about.gitlab.com/direction/devops-loop-and-spans.png)
 
 
 
-## 愿景
+### 愿景
 ```
     希望以预配置通过devops流程，替换单个应用通过一系列不同的devops工具
+    	更快的周期
+    	更简单的工作流
 ```
 ## DevOps周期
 ```
@@ -156,11 +172,11 @@ https://github.com/microsoft/vscode/pulse
 ```
     DevOps的dev周期包括manager、plan、create
 ```
-#### manager
+#### Dev-manager
 ```
     该步骤是DevOps最开始的阶段，主要是完成软件的创建和开发上；开发阶段相对来说范围比较广，包括价值调研、项目管理、敏捷工具、IDEs、设计管理等；
 ```
-##### 开发分析
+##### Dev-开发分析
 ```
     SWOT分析以及挑战
         优点
@@ -175,13 +191,13 @@ https://github.com/microsoft/vscode/pulse
     三年战略：三年内需要完成***
     一年计划：接下来的12个月将会曾为战略中不可以或缺的部分
 ```
-#### Manage
+#### Dev-Manage
 ```
     对于管理者而言，管理阶段是持续性的，需要管理人员、资金、风险等；
     当风险较高时，管理者把控项目应有经验，不应设置过于复杂的流程，并且管理者不应在安全性和规范性上妥协；
     管理者在gitlab中的角色是提供跨阶段性的帮助，协助分析更为便捷的配置；
 ```
-#### plan
+#### Dev-plan
 ```
     看板
     从jira导入避免丢失数据
@@ -190,7 +206,7 @@ https://github.com/microsoft/vscode/pulse
     报告和分析
     需求管理
 ```
-#### create
+#### Dev-create
 ```
     增强code review体验
     在git操作大型文件
@@ -212,43 +228,51 @@ https://github.com/microsoft/vscode/pulse
 ```
     Ops阶段包括DevOps周期的configure和monitor监控阶段，通常描述该阶段为IT自动化、配置管理、运营管理
 ```
-#### configure
+#### Ops-configure
 ```
     自动化配置应用、架构
 ```
-#### monitor
+#### Ops-monitor
 ```
     应用性能监控
     测试应用健康
 ```
 
-### Secure
+### Ops-Secure
 ```
     集成安全功能完成开发周期
 ```
 
-### defend
+### Ops-defend
 ```
     收到安全入侵时保护应用、架构
 ```
 
-
+---
+---
 ---
 
-
-# 面壁思过
+# 面壁
 ```
     总体感觉:
         vs的wiki页面更偏向于短周期的迭代时间安排；更偏向规范
         gitlab的介绍更偏向于长时间的计划，罗列当前产品的优劣以及挑战点，完善项目；持续生成，更偏向便捷
-    vscode的安排方式：
-        以月为周期，周为节点，划分【计划(week1)、开发(week2 week3)、发布(final week)】
-    gitlab的安排方式
-        以12月为周期，以自然月划分【Dev、ci/cd、Ops】
-            dev阶段分析，包括项目价值、管理、开发
-            ci/cd阶段主要是测试交付
-            Ops是后续的监控内容；
+        
+        vscode的安排方式：
+            以月为周期，周为节点，划分【计划(week1)、开发(week2 week3)、发布(final week)】
+        gitlab的安排方式
+            以12月为周期，以自然月划分【Dev、ci/cd、Ops】,致力于更快迭代更简洁自动化的流程
+                dev阶段分析，包括项目价值、管理、开发
+                ci/cd阶段主要是测试交付
+                Ops是后续的监控内容
+  	CCS项目的想法：
+  		1、测试规范暂时不是很完整：部分功能未有足够测试就上线了；大部分是开发自测
+  		2、由于是爬虫数据，缺少定期核查数据的安排；开发自查会遗漏检查，且比较耗时间
+  		3、希望有个大而全的wiki页面，罗列了本周期应当修复bug和新feature，不做登陆方便查看
+  		4、项目经理或产品整理上一周期遗留债务转移到下一期，并督促fix
+  		5、vs偏向于时间的安排，gitlab偏向于流程的自动化上线；
 ```
+
 ```
 
 ** 理想 ** 是美好的，现实是骨感的，新需求时间不好预估
@@ -256,41 +280,29 @@ https://github.com/microsoft/vscode/pulse
    1、关于jira，有两个想法
       没有一个大而全的页面，列出本周期需要fix的bug以及新功能完成状态的概览；
          按列表任务的方式过于详细，不利于大家了解全局的进展；特别是人数多了时间比较紧的项目；
+         【按gitlab文档，可能未来会有类似的功能，见开发分析的plan部分】
       缺少了周期结束时的整理工作，未完成的工作顺利转移到未来的周期
          不需要全部人参与，全部人消耗过多时间，能把控项目进展的人完成就好，例如项目经理or产品
          产品有时比较忙，例如新模块的调研和原型，这时又有谁能顶上？
-    【按gitlab文档，可能未来会有类似的功能，见开发分析的plan部分】
-  
-   
-   2、ccs目前大部分代码都上了ci，书写较为规范，但代码组织改进空间比较大
-         代码风格问题：面向对象的层层继承还是函数完成计算？不同同学的logic书写和逻辑划分也存在比较大的差异；
-            例如save_data比较简单，可能直接写在了logic下；
-               1、
-                     def logic
-                        get_data
-                        format_data
-                        algorithm
-                        save_data
-                     def get_data
-                     def format_data
-                     def algorithm
-                     def save_data
-               2、   
-                     class logic(db, format, al, )
-                        self.get_data
-                        self.format_data
-                        ....
-                  
-         易读性与性能，如何做抉择？orm和原生sql(顺带一个问题，sqlalchemy是否有接口，输出完整的查询或者插入原生sql)
-         什么数据什么时候需要做检查？
-         数据库连接需要注意什么？避免重复踩坑
-            非后端框架，数据计算通常为了性能，协程多进程多线程都有使用，哪些数据库第三方包多线程安全多进程又不安全？
-         对于获取数据计算问题，如果本地机器内存无法支撑取回的数据如何处理？有没有一些好的建议
+
+
+   2、ccs目前大部分代码都上了ci，书写较为规范，但一些经验经验积累问题：
+         2.1 易读性与性能，如何做抉择？orm和原生sql(另：sqlalchemy是否有接口输出完整的原生sql)
+         2.2 什么数据什么时候需要做检查？
+         2.3 数据库连接需要注意什么？避免重复踩坑
+            如非后端框架，数据计算为了性能协程多进程多线程都有用，哪些第三方包进程线程协程都安全？
+         2.4 对于获取数据计算问题，如果本地机器内存无法支撑取回的数据如何处理？有没有一些好的建议
+         	【spark可以自行缓存，不上这些大框架的处理方式】
          
          （由于vscode上面都是大佬的代码多， 想找一些建议性的review comment有难度）
-      
 
-   
+
+
 ```
- **最重要的部分：如何将规范性执行下去？** 
-    
+ #最重要的部分：如何将规范性执行下去
+​    
+
+
+```
+
+```
