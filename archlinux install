@@ -1,7 +1,9 @@
+# pacman -Syu
+# pacman -Sy git
 mkfs.ext4 /dev/sda
 mount /dev/sda /mnt
 # nano /etc/pacman.d/mirrolist
-echo "Server = http://mirrors.163.com/archlinux/$repo/os/i686" > /etc/pacman.d/mirrolist
+# echo "Server = http://mirrors.163.com/archlinux/$repo/os/i686" > /etc/pacman.d/mirrolist
 pacstrap -i /mnt base base-devel
 genfstab -U /mnt >> /mnt/etc/fsta
 arch-chroot /mnt /bin/bash
