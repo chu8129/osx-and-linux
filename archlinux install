@@ -10,6 +10,8 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 pacman -S syslinux
 syslinux-install_update -i -a -m
+# 启动缺引导的话是pacman -S linux
+# 缺preset 是mkinitcpio -p linux
 
 nano /boot/syslinux/syslinux.cfg
 
