@@ -1,5 +1,3 @@
-# pacman -Syu
-# pacman -Sy git
 mkfs.ext4 /dev/sda
 mount /dev/sda /mnt
 vim /etc/pacman.d/mirrolist
