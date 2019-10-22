@@ -1,32 +1,46 @@
 mkfs.ext4 /dev/sda
 mount /dev/sda /mnt
+fdisk ／dev/sd*
+
+mkfs.ext4 /dev/sd**
+
+# 提取1/2个源
 vim /etc/pacman.d/mirrolist
-pacstrap /mnt base base-devel
+
+# 建议加上dhcpcd
+pacstrap /mnt base linux linux-firmware dhcpcd
 genfstab -U /mnt >> /mnt/etc/fstab
+
 arch-chroot /mnt /bin/bash
 
+# 选1个，grub，至今都觉得麻烦的东西
 grub-install /dev/sda 
 grub-mkconfig -o /boot/grub/grub.cfg
-
+# 选1个，syslinux
 pacman -S syslinux
 syslinux-install_update -i -a -m
-# 启动缺引导的话是pacman -S linux
-# 缺preset 是mkinitcpio -p linux
-
 nano /boot/syslinux/syslinux.cfg
 
 useradd -m -g users -G wheel -s /bin/bash ar
 passwd ar
 
 exit
+
+mkinitcpio -p linux
+
+# 注释1:启动缺引导的话是pacman -S linux
+# 注释：缺preset 是mkinitcpio -p linux
+
 umount -R /mnt
 reboot
 
+# 桌面环境
 pacman -S install xorg xorg-xinit
 pacman -S awesome
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
 echo "exec awesome" >> ~/.xinirc
 
+# 配置环境
 nano /etc/locale.gen
 locale-gen    
 
@@ -38,8 +52,6 @@ hwclock --systohc --utc #or localtime
 echo ar > /etc/hostname
 
 systemctl start sshd.service
-
 systemctl start dhcpcd
 systemctl enable dhcpcd
-
 
