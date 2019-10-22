@@ -1,8 +1,7 @@
-mkfs.ext4 /dev/sda
-mount /dev/sda /mnt
+# 分区格式化+挂载
 fdisk ／dev/sd*
-
 mkfs.ext4 /dev/sd**
+mount /dev/sd** /mnt
 
 # 提取1/2个源,其他可删除
 vim /etc/pacman.d/mirrolist
