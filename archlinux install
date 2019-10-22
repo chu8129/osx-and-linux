@@ -19,6 +19,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # 选1个，syslinux
 pacman -S syslinux
 syslinux-install_update -i -a -m
+# 重点是修改/dev/sd*
 nano /boot/syslinux/syslinux.cfg
 
 useradd -m -g users -G wheel -s /bin/bash ar
