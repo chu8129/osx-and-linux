@@ -36,7 +36,7 @@ reboot
 
 # 桌面环境
 pacman -S install xorg xorg-xinit
-pacman -S awesome
+pacman -S awesome vicious
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
 echo "exec awesome" >> ~/.xinirc
 
