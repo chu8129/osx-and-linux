@@ -26,7 +26,7 @@ passwd ar
 
 exit
 
-mkinitcpio -p linux
+# 如有改动才需要，mkinitcpio -p linux
 
 # 注释1:启动缺引导的话是pacman -S linux
 # 注释：缺preset 是mkinitcpio -p linux
