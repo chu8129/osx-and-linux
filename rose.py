@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/python
 
 class GildedRose(object):
 
