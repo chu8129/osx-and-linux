@@ -80,13 +80,14 @@ class Item:
 
 import unittest
 import random
+import copy
 
 def judge_equal(items, gilded_rose, rose):
     error_count = 0
     for index in range(len(items)):
         item = items[index]
-        o = gilded_rose.items[index]
-        m = rose.items[index]
+        o = gilded_rose.items[copy.deepcopy(index)]
+        m = rose.items[copy.deepcopy(index)]
         if o.name == m.name and o.quality == m.quality and o.sell_in == m.sell_in:
             # print(item, "right")
             pass
@@ -106,9 +107,9 @@ class GildedRoseTest(unittest.TestCase):
         while c > n:
             c += 1
             items = [Item(random.choice(names), random.choice(sell_in), random.choice(quality))]
-            gilded_rose = GildedRose(items)
+            gilded_rose = GildedRose(copy.deepcopy(items))
             gilded_rose.update_quality()
-            rose = Rose(items)
+            rose = Rose(copy.deepcopy(items))
             rose.update_quality()
             error_count_patch = judge_equal(items, gilded_rose, rose)
             error_count += error_count_patch
@@ -131,9 +132,9 @@ class GildedRoseTestV2(unittest.TestCase):
     error_count = 0
     days = 10
     for day in range(days):
-        o = GildedRose(items)
+        o = GildedRose(copy.deepcopy(items))
         o.update_quality()
-        m = Rose(items)
+        m = Rose(copy.deepcopy(items))
         m.update_quality()
         error_count_patch = judge_equal(items, o, m)
         error_count += error_count_patch
