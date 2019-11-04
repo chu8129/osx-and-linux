@@ -98,7 +98,7 @@ def judge_equal(items, gilded_rose, rose):
 
 class GildedRoseTest(unittest.TestCase):
     def test_foo(self):
-        sell_in = list(range(-10, 2))
+        sell_in = list(range(-10, 20))
         quality = list(range(-1, 50))
         names = ["Aged Brie", "Backstage passes to a TAFKAL80ETC concert", "Sulfuras, Hand of Ragnaros", "something else"]
         n = 100000
