@@ -48,11 +48,13 @@ class Rose(object):
                 item.quality = min([50, item.quality + 1])
             elif item.name == "Backstage passes to a TAFKAL80ETC concert":
                 item.quality = min([50, item.quality + 1])
-                item.quality = min([50, max([item.quality + _ for _ in [0, 1 if item.quality < 6 else 0, 2 if item.quality < 11 else 0]])])
+                item.quality = min([50, max([item.quality + _ for _ in [0, 2 if item.sell_in < 6 else 0, 1 if item.sell_in < 11 else 0]])])
+            elif item.quality <= 0:
+                pass
             elif item.name == "Sulfuras, Hand of Ragnaros":
                 pass
             else:
-                item.quality = max([0, item.quality - 1])
+                item.quality = max([-1, item.quality - 1])
 
             if item.name != "Sulfuras, Hand of Ragnaros":
                 item.sell_in = item.sell_in - 1
@@ -62,6 +64,8 @@ class Rose(object):
                     item.quality = min([50, item.quality + 1])
                 elif item.name == "Backstage passes to a TAFKAL80ETC concert":
                     item.quality = 0
+                elif item.quality <= 0:
+                    pass
                 elif item.name == "Sulfuras, Hand of Ragnaros":
                     pass
                 else:
@@ -99,8 +103,9 @@ def judge_equal(items, gilded_rose, rose):
 class GildedRoseTest(unittest.TestCase):
     def test_foo(self):
         sell_in = list(range(-10, 20))
-        quality = list(range(-1, 50))
+        quality = list(range(-10, 50))
         names = ["Aged Brie", "Backstage passes to a TAFKAL80ETC concert", "Sulfuras, Hand of Ragnaros", "something else"]
+
         n = 100000
         c = 0
         error_count = 0
@@ -115,30 +120,46 @@ class GildedRoseTest(unittest.TestCase):
             error_count += error_count_patch
         print("all:%s, error:%s" % (n, error_count))
 
-
-
+        items = [Item(n, s, q) for s in sell_in for q in quality for n in names]
+        gilded_rose = GildedRose(copy.deepcopy(items))
+        gilded_rose.update_quality()
+        rose = Rose(copy.deepcopy(items))
+        rose.update_quality()
+        error_count = judge_equal(items, gilded_rose, rose)
+        print("all case, all:%s, error:%s" % (len(items), error_count))\
+        
 class GildedRoseTestV2(unittest.TestCase):
-    items = [
-             Item(name="+5 Dexterity Vest", sell_in=10, quality=20),
-             Item(name="Aged Brie", sell_in=2, quality=0),
-             Item(name="Elixir of the Mongoose", sell_in=5, quality=7),
-             Item(name="Sulfuras, Hand of Ragnaros", sell_in=0, quality=80),
-             Item(name="Sulfuras, Hand of Ragnaros", sell_in=-1, quality=80),
-             Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=15, quality=20),
-             Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=10, quality=49),
-             Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=5, quality=49),
-             Item(name="Conjured Mana Cake", sell_in=3, quality=6),  # <-- :O
-            ]
-    error_count = 0
-    days = 10
-    for day in range(days):
-        o = GildedRose(copy.deepcopy(items))
-        o.update_quality()
-        m = Rose(copy.deepcopy(items))
-        m.update_quality()
-        error_count_patch = judge_equal(items, o, m)
-        error_count += error_count_patch
-    print("error:%s" % (error_count,))
+    def test_foo(self,):
+        items = [
+                 Item(name="+5 Dexterity Vest", sell_in=10, quality=20),
+                 Item(name="Aged Brie", sell_in=2, quality=0),
+                 Item(name="Elixir of the Mongoose", sell_in=5, quality=7),
+                 Item(name="Sulfuras, Hand of Ragnaros", sell_in=0, quality=80),
+                 Item(name="Sulfuras, Hand of Ragnaros", sell_in=-1, quality=80),
+                 Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=15, quality=20),
+                 Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=10, quality=49),
+                 Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=5, quality=49),
+                 Item(name="Conjured Mana Cake", sell_in=3, quality=6),  # <-- :O
+                ]
+        error_count = 0
+        days = 10
+        for day in range(days):
+            o = GildedRose(copy.deepcopy(items))
+            o.update_quality()
+            m = Rose(copy.deepcopy(items))
+            m.update_quality()
+            error_count_patch = judge_equal(items, o, m)
+            error_count += error_count_patch
+        print("error:%s" % (error_count,))
 
 if __name__ == '__main__':
     unittest.main()
+    """
+    items = [Item("Aged Brie", 0, 1)]
+    o = GildedRose(copy.deepcopy(items))
+    o.update_quality()
+    print(o.items)
+    m = Rose(copy.deepcopy(items))
+    m.update_quality()
+    print(m.items)
+    
