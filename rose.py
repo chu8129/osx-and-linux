@@ -162,4 +162,4 @@ if __name__ == '__main__':
     m = Rose(copy.deepcopy(items))
     m.update_quality()
     print(m.items)
-    
+    """
