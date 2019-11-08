@@ -1,0 +1,60 @@
+curl -sSL https://get.docker.com/ | sh
+sudo usermod -aG docker qw
+sudo service docker restart
+sudo run ubuntu
+
+sudo docker export 0a7b2febd9ac >tfdocker.tar
+sudo docker import tfdocker.tar tf
+sudo docker run -it --name tf_paramserver --rm --cpus=1 --memory=1g -h tf_paramserver tf bash
+
+
+import tensorflow as tf
+cluster = tf.train.ClusterSpec({
+    "ps": [
+        "172.17.0.2:2222"
+    ],
+    "worker": [
+        "172.17.0.3:2222"
+    ]})
+server = tf.train.Server(cluster, job_name="ps", task_index=0)
+
+
+import tensorflow as tf
+cluster = tf.train.ClusterSpec({
+    "ps": [
+        "172.17.0.2:2222"
+    ],
+    "worker": [
+        "172.17.0.3:2222"
+    ]})
+server = tf.train.Server(cluster, job_name="worker", task_index=0)
+
+
+
+
+
+import tensorflow as tf
+import numpy as np 
+train_x = np.linspace(-1, 1, 101)
+train_y = 2 * train_x + np.random.randn(*train_x.shape) * 0.33 + 10
+x = tf.placeholder("float")
+y = tf.placeholder("float")
+w = tf.Variable(0.0, name="weight")
+b = tf.Variable(0.0, name="reminder")
+
+init_op = tf.global_variables_initializer()
+cost_op = tf.square(y - tf.multiply(x, w) - b)
+train_op = tf.train.GradientDescentOptimizer(0.01).minimize(cost_op)
+sess = tf.Session("grpc://172.17.0.2:2222")
+
+with tf.device("/job:worker/task:0"):
+    sess.run(init_op)
+    for i in range(10):
+        for x,y in zip(train_x, train_y):
+            sess.run(train_op, feed_dict={X:x, Y:y})
+    print(sess.run(w))
+    print(sess.run(b))
+
+
+
+
