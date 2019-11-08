@@ -12,7 +12,8 @@ cluster = tf.train.ClusterSpec({
         "172.17.0.2:2222"
     ],
     "worker": [
-        "172.17.0.4:2222"
+        "172.17.0.4:2223",
+        "172.17.0.5:2223",
     ]})
 server = tf.train.Server(cluster, job_name="ps", task_index=0)
 
@@ -23,37 +24,71 @@ cluster = tf.train.ClusterSpec({
         "172.17.0.2:2222"
     ],
     "worker": [
-        "172.17.0.4:2222"
+        "172.17.0.5:2223",
+        "172.17.0.4:2223",
     ]})
 server = tf.train.Server(cluster, job_name="worker", task_index=0)
 
+import tensorflow as tf
+cluster = tf.train.ClusterSpec({
+    "ps": [
+        "172.17.0.2:2222"
+    ],
+    "worker": [
+        "172.17.0.4:2223",
+        "172.17.0.5:2223",
+    ]})
+server = tf.train.Server(cluster, job_name="worker", task_index=0)
+
+import tensorflow as tf
+cluster = tf.train.ClusterSpec({
+    "ps": [
+        "172.17.0.2:2222"
+    ],
+    "worker": [
+        "172.17.0.4:2223",
+        "172.17.0.5:2223",
+    ]})
+server = tf.train.Server(cluster, job_name="worker", task_index=1)
 
 
 import tensorflow as tf
-import numpy as np 
+import numpy as np
+
+sess = tf.compat.v1.Session("grpc://172.17.0.2:2222")
 
 train_x = np.linspace(-1, 1, 10001)
 train_y = 2 * train_x + np.random.randn(*train_x.shape) * 0.33 + 10
-x = tf.placeholder(tf.float32)
-w = tf.Variable(tf.zeros([1]))
-b = tf.Variable(tf.zeros([1]))
-y = tf.placeholder(tf.float32)
-cost_op = tf.square(y - tf.multiply(x, w) - b)
-train_op = tf.train.GradientDescentOptimizer(0.01).minimize(cost_op)
 
-sess = tf.Session("grpc://172.17.0.2:2222")
-init = tf.global_variables_initializer()
+with tf.device("/job:worker/task:0"):
+    b = tf.Variable(tf.zeros([1]))
+with tf.device("/job:worker/task:1"):
+    w = tf.Variable(tf.zeros([1]))
+with tf.device("/job:ps/task:0"):
+    x = tf.compat.v1.placeholder(tf.float32)
+    y = tf.compat.v1.placeholder(tf.float32)
+    cost_op = tf.square(y - tf.multiply(x, w) - b)
+    train_op = tf.compat.v1.train.GradientDescentOptimizer(0.01).minimize(cost_op)
+
+init = tf.compat.v1.global_variables_initializer()
 sess.run(init)
 
 steps = 100000
-for i in range(steps):
+for i in range(1,steps):
+
     for xi,yi in zip(train_x, train_y):
-        sess.run(train_op, feed_dict={x:xi, y:yi})
-    if i % 100 == 0 :
+        feed_dict={x:xi, y:yi}
+        sess.run(train_op, feed_dict=feed_dict)
+    if 1 or i % 100 == 0 :
         print("After %d iteration:" % i)
         print("W: %f" % sess.run(w))
         print("b: %f" % sess.run(b))
-        print("lost: %f" % sess.run(lost, feed_dict=feed))
+        print("lost: %f" % sess.run(cost_op, feed_dict=feed_dict))
 
+
+
+
+~                                                                                                                                                                            
+~                                
 
 
