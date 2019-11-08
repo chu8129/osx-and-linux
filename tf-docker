@@ -1,7 +1,5 @@
-curl -sSL https://get.docker.com/ | sh
-sudo usermod -aG docker qw
-sudo service docker restart
-sudo run ubuntu
+sudo docker run -it --name tf_paramserver --rm --cpus=1 --memory=1g -h tf_paramserver /bin/bash
+
 
 sudo docker export 0a7b2febd9ac >tfdocker.tar
 sudo docker import tfdocker.tar tf
@@ -14,7 +12,7 @@ cluster = tf.train.ClusterSpec({
         "172.17.0.2:2222"
     ],
     "worker": [
-        "172.17.0.3:2222"
+        "172.17.0.4:2222"
     ]})
 server = tf.train.Server(cluster, job_name="ps", task_index=0)
 
@@ -25,36 +23,37 @@ cluster = tf.train.ClusterSpec({
         "172.17.0.2:2222"
     ],
     "worker": [
-        "172.17.0.3:2222"
+        "172.17.0.4:2222"
     ]})
 server = tf.train.Server(cluster, job_name="worker", task_index=0)
 
 
 
-
-
 import tensorflow as tf
 import numpy as np 
-train_x = np.linspace(-1, 1, 101)
-train_y = 2 * train_x + np.random.randn(*train_x.shape) * 0.33 + 10
-x = tf.placeholder("float")
-y = tf.placeholder("float")
-w = tf.Variable(0.0, name="weight")
-b = tf.Variable(0.0, name="reminder")
 
-init_op = tf.global_variables_initializer()
+train_x = np.linspace(-1, 1, 10001)
+train_y = 2 * train_x + np.random.randn(*train_x.shape) * 0.33 + 10
+x = tf.placeholder(tf.float32)
+w = tf.Variable(tf.zeros([1]))
+b = tf.Variable(tf.zeros([1]))
+y = tf.placeholder(tf.float32)
 cost_op = tf.square(y - tf.multiply(x, w) - b)
 train_op = tf.train.GradientDescentOptimizer(0.01).minimize(cost_op)
+
 sess = tf.Session("grpc://172.17.0.2:2222")
+init = tf.global_variables_initializer()
+sess.run(init)
 
-with tf.device("/job:worker/task:0"):
-    sess.run(init_op)
-    for i in range(10):
-        for x,y in zip(train_x, train_y):
-            sess.run(train_op, feed_dict={X:x, Y:y})
-    print(sess.run(w))
-    print(sess.run(b))
-
+steps = 100000
+for i in range(steps):
+    for xi,yi in zip(train_x, train_y):
+        sess.run(train_op, feed_dict={x:xi, y:yi})
+    if i % 100 == 0 :
+        print("After %d iteration:" % i)
+        print("W: %f" % sess.run(w))
+        print("b: %f" % sess.run(b))
+        print("lost: %f" % sess.run(lost, feed_dict=feed))
 
 
 
