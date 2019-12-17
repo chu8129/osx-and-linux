@@ -1,4 +1,4 @@
 疑问：
     1、如何判断成功or失败？try？
     2、如果设置间隔时间？sleep？
-    3、
+    3、如何重试？while n:try except?
